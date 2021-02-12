@@ -75,7 +75,7 @@ class _SinglePageAppState extends State<SinglePageApp>
   Widget mainScaffold() {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FEBsecure'),
+        title: Text(_signIn ? 'True' : 'False'),
         bottom: TabBar(
           controller: _tabController,
           onTap: (int index) {
@@ -186,14 +186,9 @@ class _SinglePageAppState extends State<SinglePageApp>
                 signInWithGoogle().then((result) {
                   if (result != null) {
                     print('lol');
-                    _signIn = true;
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return build(context);
-                        },
-                      ),
-                    );
+                    setState(() {
+                      _signIn = true;
+                    });
                   }
                 });
               },
